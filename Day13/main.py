@@ -1,8 +1,5 @@
-import re
-
 with open("input.txt") as f:
     pairs = [x.split("\n") for x in f.read().strip().split("\n\n")]
-
 
 def is_correct_order(left, right):
     i = 0
@@ -41,7 +38,6 @@ def is_correct_order(left, right):
         return True
     elif len(left) > len(right):
         return False
-
 
 total = 0
 
