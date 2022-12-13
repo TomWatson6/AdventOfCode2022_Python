@@ -15,11 +15,8 @@ def is_correct_order(left, right):
                     outcome = is_correct_order(left[i], right[i])
                 else:
                     outcome = is_correct_order(left[i], [right[i]])
-            elif right_type == 1:
-                if left_type == 1:
-                    outcome = is_correct_order(left[i], right[i])
-                else:
-                    outcome = is_correct_order([left[i]], right[i])
+            else:
+                outcome = is_correct_order([left[i]], right[i])
 
             if outcome is not None:
                 return outcome
