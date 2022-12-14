@@ -91,7 +91,6 @@ print("Part 1:", outcome)
 
 grid, max_y = init_grid(lines)
 floor = (max_y + 2)
-dist = floor * 2
 
 for x in range(500 - floor, 500 + floor + 1, 1):
     grid[(x, floor)] = True
