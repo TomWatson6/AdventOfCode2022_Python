@@ -19,12 +19,22 @@ for line in lines:
 
 start = 'AA'
 MAX_DEPTH = 30
-T = []
+T = (0, [])
 DP = {}
 
 def explore(curr, depth, total, visited, path):
+    global T
     path.append(curr)
+
+    if len(path) > 16:
+        for i in range(8, len(path), 2):
+            if path[len(path)-i*2:][:i] == path[len(path)-i*2:][i:] or path[len(path)-i*2:][:i] == path[len(path)-i*2:][:i][::-1]:
+                return
+
     is_open = False
+
+    if depth == 4:
+        print("At depth 4")
 
     if curr not in visited:
         visited.add(curr)
@@ -37,7 +47,8 @@ def explore(curr, depth, total, visited, path):
 
     if depth >= MAX_DEPTH:
         # DP[(curr, depth, tuple(sorted(list(visited))))] = total
-        T.append((total, path))
+        # T.append((total, path))
+        T = max(T, (total, path), key=lambda k: k[0])
         return
 
     for next in M[curr]:
@@ -46,7 +57,7 @@ def explore(curr, depth, total, visited, path):
 
 explore(start, 0, 0, set(), [])
 
-print(max(T, key=lambda t: t[0]))
+print(T)
 
 
 
