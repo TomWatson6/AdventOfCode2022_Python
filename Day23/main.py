@@ -45,14 +45,16 @@ def evolve():
     for k in grid:
         adj = get_adjacents(k)
         if any([x in grid for x in adj]):
-            if funcs[func_pointer % len(funcs)](k, adj):
-                M[outcomes[func_pointer % len(funcs)](k)].append(k)
-            elif funcs[(func_pointer + 1) % len(funcs)](k, adj):
-                M[outcomes[(func_pointer + 1) % len(funcs)](k)].append(k)
-            elif funcs[(func_pointer + 2) % len(funcs)](k, adj):
-                M[outcomes[(func_pointer + 2) % len(funcs)](k)].append(k)
-            elif funcs[(func_pointer + 3) % len(funcs)](k, adj):
-                M[outcomes[(func_pointer + 3) % len(funcs)](k)].append(k)
+            index = lambda i: (func_pointer + i) % len(funcs)
+
+            if funcs[index(0)](k, adj):
+                M[outcomes[index(0)](k)].append(k)
+            elif funcs[index(1)](k, adj):
+                M[outcomes[index(1)](k)].append(k)
+            elif funcs[index(2)](k, adj):
+                M[outcomes[index(2)](k)].append(k)
+            elif funcs[index(3)](k, adj):
+                M[outcomes[index(3)](k)].append(k)
 
     new_grid = set()
 
