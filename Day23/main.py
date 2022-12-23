@@ -100,29 +100,14 @@ def print_grid():
 
     print()
 
-def trim_grid():
-    YM = min([x[0] for x in grid])
-    XM = min([x[1] for x in grid])
-    YS = max([x[0] for x in grid])
-    XS = max([x[1] for x in grid])
-
-    new_grid = set()
-
-    for r in range(YM, YS + 1):
-        for c in range(XM, XS + 1):
-            if (r, c) in grid:
-                new_grid.add((r, c))
-
-    return new_grid
-
 same = False
 i = 0
+
 while not same:
     grid, same = evolve()
     if same:
         print("Part 2:", i + 1)
         break
-    grid = trim_grid()
     if i == 9:
         print("Part 1:", count_empty())
     i += 1
