@@ -4,6 +4,8 @@ with open("input.txt") as f:
     lines = [x.strip() for x in f.readlines()]
     lines = [[tuple(y.split(",")) for y in x.split(" -> ")] for x in lines]
 
+G = set()
+
 def init_grid(lines):
     grid = {}
     max_y = 0
@@ -33,6 +35,7 @@ def init_grid(lines):
 
             while x != right[0] or y != right[1]:
                 grid[(x, y)] = True
+                G.add((x, y))
                 x += sx
                 y += sy
         
@@ -83,6 +86,23 @@ def simulate(grid, x, y, max_y):
             count += 1
     
     return count
+
+def print_grid():
+    RM = min(x[0] for x in grid)
+    RS = max(x[0] for x in grid)
+    CM = min(x[1] for x in grid)
+    CS = max(x[1] for x in grid)
+
+    for c in range(CM, CS + 1):
+        for r in range(RM, RS + 1):
+            if (r, c) in G:
+                print("#", end="")
+            elif (r, c) in grid:
+                print(".", end="")
+            else:
+                print(" ", end="")
+        print()
+    print()
 
 
 grid, max_y = init_grid(lines)
