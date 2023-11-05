@@ -97,7 +97,8 @@ print(instructions)
 curr = None
 count = 0
 i = 0
-limit = 1000000000000
+#limit = 1000000000000
+limit = 2022
 
 while count < limit:
     m = instructions[i%len(instructions)]
